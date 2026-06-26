@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "./ThemeToggle";
 import { profile } from "../data/portfolio";
 
 const navItems = [
@@ -54,21 +53,17 @@ export const Navbar = () => {
               {item.name}
             </a>
           ))}
-          <ThemeToggle />
         </div>
 
         {/* mobile nav */}
 
-        <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
-          <button
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="p-2 text-foreground z-50"
-            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        <button
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+          className="p-2 text-foreground z-50 md:hidden"
+          aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
 
         <div
           className={cn(
