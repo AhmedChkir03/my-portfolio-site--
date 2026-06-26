@@ -1,101 +1,65 @@
-import { Briefcase, Calendar, Star } from "lucide-react";
-
-const experiences = [
-  {
-    title: "Web Developer",
-    company: "ASZ Automation",
-    date: "Feb 2024 – May 2024",
-    achievements: [
-      "Developed responsive UI components with Vue.js and TailwindCSS",
-      "Integrated backend systems using Laravel and RESTful APIs",
-      "Implemented SEO improvements and boosted engagement"
-    ],
-    tech: ["Vue.js", "Laravel", "Bootstrap", "TailwindCSS"],
-  },
- {
-  title: "Full-Stack Developer Intern",
-  company: "VISS Tunisie",
-  date: "Jun 2025 – Jul 2025",
-  achievements: [
-    "Developed a WordPress website for Innovia360, showcasing an AI-powered content generation plugin",
-    "Designed and implemented a web application for generating Business Plans using AI (Gemini API)",
-    "Built the backend with Laravel and the frontend with Bootstrap for responsive design"
-  ],
-  tech: ["Laravel", "Bootstrap", "WordPress", "Gemini API", "JavaScript", "PHP"],
-},
-
-  {
-    title: "Stager",
-    company: "STEG Mahres",
-    date: "Jun 2024 – jul 2024",
-    achievements: [
-      "Collaboré avec l’équipe du service relevé pour la collecte et le traitement des données de consommation des clients.",
-      "Utilisé Microsoft Excel pour saisir, trier et analyser les relevés de compteurs.",
-      "Rédigé des documents administratifs et rapports internes avec Microsoft Word.",
-      "Consulté et mis à jour les informations client sur le site interne de la STEG.",
-      "Développé des compétences en gestion de données, organisation et communication avec les clients."
-    ],
-    tech: ["Microsoft Excel", "Microsoft Word", "Site officiel du steg"],
-  },
-];
+import { experiences } from "../data/portfolio";
 
 export const ExperienceSection = () => {
   return (
     <section id="experience" className="py-24 px-4 relative">
-      <h2 className="text-3xl font-bold text-center mb-16">
-        My Professional Experience
-      </h2>
+      <div className="container mx-auto max-w-7xl">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+          Professional <span className="text-primary">Experience</span>
+        </h2>
+        <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
+          Roles and project work taken directly from the CV.
+        </p>
 
-      {/* Vertical glowing line */}
-<div
-        className="absolute left-1/2 transform -translate-x-1/2 w-1 z-0"
-        style={{
-          height: `calc(100% - 150px)`, // Shorter than full height
-          backgroundColor: "rgba(82, 53, 150, 0.5)",
-          animation: "pulse-glow 2s infinite",
-        }}
-      />
-      <div className="relative max-w-6xl mx-auto space-y-12 z-10">
-        {experiences.map((exp, idx) => {
-          const isLeft = idx % 2 === 0;
-          return (
-            <div
-              key={idx}
-              className={`relative flex flex-col md:flex-row ${
-                isLeft ? "md:justify-start" : "md:justify-end"
-              }`}
-            >
-              <div className={`md:w-1/2 ${isLeft ? "md:pr-8" : "md:pl-8"}`}>
-                <div className="gradient-border p-6 card-hover rounded-2xl shadow-md text-left">
-                  <div className="flex justify-between text-sm text-gray-400">
-                    <span className="font-semibold" >
-                      {exp.title}
-                    </span>
-                    <span>{exp.date}</span>
+        <div className="relative">
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-primary/30 md:-translate-x-1/2" />
+
+          <div className="relative space-y-10">
+            {experiences.map((exp, idx) => {
+              const isLeft = idx % 2 === 0;
+
+              return (
+                <article
+                  key={`${exp.company}-${exp.title}`}
+                  className={`relative flex ${isLeft ? "md:justify-start" : "md:justify-end"} pl-10 md:pl-0`}
+                >
+                  <div
+                    className={`w-full md:w-[calc(50%-2rem)] rounded-2xl border border-border bg-card p-6 shadow-xs card-hover ${
+                      isLeft ? "md:mr-8" : "md:ml-8"
+                    }`}
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                      <div>
+                        <p className="text-sm uppercase tracking-[0.2em] text-primary/80">
+                          {exp.date}
+                        </p>
+                        <h3 className="text-xl font-semibold mt-2">{exp.title}</h3>
+                        <p className="text-muted-foreground">{exp.company}</p>
+                      </div>
+                    </div>
+
+                    <ul className="mt-5 space-y-3 text-sm text-foreground/85 list-disc list-inside">
+                      {exp.achievements.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {exp.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs px-3 py-1 rounded-full bg-secondary/80 text-secondary-foreground"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold mt-2  " >{exp.company}</h3>
-
-                  <ul className="mt-4 list-disc list-inside space-y-2 text-sm ">
-                    {exp.achievements.map((point, i) => (
-                      <li key={i}>{point}</li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {exp.tech.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="text-xs px-3 py-1 bg-[#28244f] rounded-full text-cyan-200"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+                </article>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

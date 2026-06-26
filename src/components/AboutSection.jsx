@@ -1,110 +1,86 @@
 import { Briefcase, Code, User } from "lucide-react";
+import { profile } from "../data/portfolio";
 
 export const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-7xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           About <span className="text-primary">Me</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* LEFT TEXT */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold">
-              Innovative Web Developer with IoT Expertise
+              Junior Full-Stack Engineer with AI and IoT Experience
             </h3>
 
             <p className="text-muted-foreground">
-              I am Ahmed Chkir, a third-year IoT student at Enetcom Sfax,
-              specializing in web development. I focus on building efficient and
-              scalable web applications using modern technologies like HTML,
-              CSS, JavaScript, React, and Angular.
+              I am Ahmed Chkir, a junior full-stack software engineer based in
+              Tunisia. My work spans web applications, AI-assisted workflows,
+              APIs, databases, and IoT systems, with a strong focus on shipping
+              practical solutions that are maintainable and easy to use.
             </p>
 
             <p className="text-muted-foreground">
-              Combining my IoT background with web development, I bring a unique
-              perspective to projects. I am continuously improving my backend
-              skills to become a full-stack developer and enjoy crafting
-              solutions that are both user-friendly and technically sound.
+              My recent work includes a festival management platform, an AI
+              business-plan generator, a smart greenhouse, and a face
+              recognition system. I enjoy bridging product thinking with strong
+              technical execution.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
+            <div className="flex flex-col sm:flex-row gap-4 pt-2 justify-start">
+              <a href="#contact" className="cosmic-button w-full sm:w-auto text-center">
                 Get In Touch
               </a>
               <a
-                href="/AhmedChkir_Cv.pdf"
+                href={profile.cv}
                 download="Ahmed_Chkir_CV.pdf"
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
+                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 w-full sm:w-auto text-center"
               >
                 Download CV
               </a>
             </div>
           </div>
-            {/* RIGHT IMAGE */}
-            <div className="relative flex justify-center items-center">
-              {/* Purple glow behind image */}
-             <div className="absolute w-[450px] h-[450px] bg-purple-500 rounded-full blur-3xl opacity-40 z-0 animate-pulse" />
 
-            {/* Your professional photo */}
-           <img
+          <div className="relative flex justify-center items-start md:pt-2 lg:pt-0">
+            <div className="absolute w-[360px] h-[360px] bg-primary/30 rounded-full blur-3xl opacity-40 z-0 animate-pulse" />
+            <img
               src="/ahmedchkir.png"
-              alt="Ahmed Chkir"
-              className="relative z-10 w-96 h-96 object-cover rounded-full shadow-2xl"
-             />
+              alt="Ahmed Chkir portrait"
+              className="relative z-10 w-80 h-80 md:w-96 md:h-96 object-cover rounded-full shadow-2xl border border-white/10 md:mt-2"
+            />
           </div>
         </div>
 
-        {/* SKILLS SECTION */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16">
           {[
             {
+              label: "Focus",
+              title: "Full-stack engineer with AI and IoT experience",
               icon: <Code className="h-6 w-6 text-primary" />,
-              title: "Web Development & WordPress",
-              desc:
-                "Creating responsive websites and custom WordPress solutions using modern frameworks.",
             },
             {
+              label: "Location",
+              title: profile.location,
               icon: <User className="h-6 w-6 text-primary" />,
-              title: "UI/UX Design",
-              desc:
-                "Designing user-friendly interfaces and seamless experiences focused on accessibility and engagement.",
             },
             {
+              label: "Status",
+              title: "Open to internships and junior roles",
               icon: <Briefcase className="h-6 w-6 text-primary" />,
-              title: "Project Management",
-              desc:
-                "Managing projects end-to-end with agile methodologies to ensure timely delivery and quality results.",
             },
-            {
-              icon: <User className="h-6 w-6 text-primary" />,
-              title: "Backend Development",
-              desc:
-                "Developing robust server-side applications using Node.js, Express, and Laravel.",
-            },
-            {
-              icon: <User className="h-6 w-6 text-primary" />,
-              title: "Version Control & Collaboration",
-              desc:
-                "Using GitHub for code management, collaboration, and continuous integration.",
-            },
-            {
-              icon: <User className="h-6 w-6 text-primary" />,
-              title: "API Development & Testing",
-              desc:
-                "Creating and testing RESTful APIs with tools like Postman to ensure reliable integrations.",
-            },
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="gradient-border p-6 card-hover rounded-2xl"
-            >
+          ].map((item) => (
+            <div key={item.label} className="rounded-2xl border border-border bg-card p-6 shadow-sm card-hover">
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">{item.icon}</div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">{item.title}</h4>
-                  <p className="text-muted-foreground">{item.desc}</p>
+                <div className="p-3 rounded-full bg-primary/10 shrink-0">{item.icon}</div>
+                <div className="text-left min-w-0">
+                  <p className="text-[0.65rem] uppercase tracking-[0.28em] text-primary/70">
+                    {item.label}
+                  </p>
+                  <h4 className="mt-2 text-base md:text-lg font-semibold leading-snug">
+                    {item.title}
+                  </h4>
                 </div>
               </div>
             </div>
